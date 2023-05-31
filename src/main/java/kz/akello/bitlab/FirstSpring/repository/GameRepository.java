@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface GameRepository extends JpaRepository<GameModel, Long> {
-    List<GameModel> findAllByPriceGreaterThanEqualAndYearGreaterThan(int price, int year);
+//    List<GameModel> findAllByPriceGreaterThanEqualAndYearGreaterThan(int price, int year);
 
     @Query(value = "SELECT gm " +
             "FROM GameModel gm " +

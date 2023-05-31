@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "list_games")
 @Getter
@@ -25,6 +27,9 @@ public class GameModel {
 
     @ManyToOne
     private AuthorModel authorModel;
+
+    @ManyToMany
+    private List<GenreModel> genres;
 
     @PrePersist
     public void checkForNegativePrice(){

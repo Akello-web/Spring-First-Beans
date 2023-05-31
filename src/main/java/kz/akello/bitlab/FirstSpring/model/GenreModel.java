@@ -5,19 +5,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "list_authors")
+@Table(name = "list_genres")
 @Getter
 @Setter
-public class AuthorModel {
+public class GenreModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "full_name")
-    private String fullName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "game_status")
-    private String status;
-
+    @Column(name = "code")
+    private String code;
 }

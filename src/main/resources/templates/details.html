@@ -2,7 +2,41 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="main_layout.html">
 
-<div layout:fragment="siteContent">
+<div layout:fragment="siteContent" class="mt-2 mb-5">
+    <div class="row" th:if="${theGame!=null}">
+        <div class="col-6">
+            <table class="table">
+                <tr th:each="genre : ${genres}">
+                    <form th:action="@{'/assign-genre'}" method="post">
+                        <input type="hidden" name="game_id" th:value="${theGame.id}">
+                        <input type="hidden" name="genre_id" th:value="${genre.id}">
+                        <td th:text="${genre.name + ' / ' + genre.code}"></td>
+                        <td>
+                            <button class="btn btn-success btn-sm">
+                                >>>
+                            </button>
+                        </td>
+                    </form>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-6">
+            <table class="table">
+                <tr th:each="genre : ${theGame.genres}">
+                    <form th:action="@{'/unassign-genre'}" method="post">
+                        <input type="hidden" name="game_id" th:value="${theGame.id}">
+                        <input type="hidden" name="genre_id" th:value="${genre.id}">
+                        <td>
+                            <button class="btn btn-danger btn-sm"><<<</button>
+                        </td>
+                        <td th:text="${genre.name + ' / ' + genre.code}"></td>
+
+                    </form>
+                </tr>
+            </table>
+        </div>
+    </div>
     <div class="row">
         <div class="col-6 mx-auto">
             <form action="/save-game" method="post" th:if="${theGame!=null}">
