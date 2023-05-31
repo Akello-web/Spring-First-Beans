@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="main_layout.html">
+    <div layout:fragment="siteContent">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID:</th>
+                <th>NAME:</th>
+                <th>YEAR:</th>
+                <th>PRICE:</th>
+                <th>AUTHORS:</th>
+                <th>DETAILS:</th>
+            </tr>
+            </thead>
+            <tbody>
+<!--            <tr th:each = "games : ${igry}" th:style="${games.price >= 3.0?(games.price>=6.0?'color:red;':'color:blue;'):'color: gray;'}">-->
+            <tr th:each = "games : ${igry}" th:class="${games.price == 0?'text-success fw-bold':(games.price>=3.0?(games.price>=6.0?'text-danger':'text-primary'):'text-secondary')}">
+                <td th:text="${games.id}"></td>
+                <td th:text="${games.name}"></td>
+                <td th:text="${games.year}"></td>
+                <td th:text="${games.price == 0 ? 'FREE' : games.price}"></td>
+                <td th:text="${games.authorModel.fullName}"></td>
+                <td>
+                    <a th:href="@{'/details/' + ${games.id}}" class="btn btn-success">details</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</html>

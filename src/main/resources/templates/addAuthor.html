@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="main_layout.html">
+
+<div layout:fragment="siteContent">
+    <div class="row">
+        <div class="col-9 mx-auto">
+            <form action="/add-author" method="post">
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label>NAME:</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="fullName" placeholder="Insert Name" required>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label>STATUS:</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="status" placeholder="Insert Status" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <button class="btn btn-success btn-sm">ADD GAME</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12 mx-auto">
+            <table class="table table-striped" >
+                <thead>
+                <tr>
+                    <th>ID:</th>
+                    <th>NAME:</th>
+                    <th>STATUS:</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each = "author : ${authors}" >
+                    <td th:text="${author.id}"></td>
+                    <td th:text="${author.fullName}"></td>
+                    <td th:text="${author.status}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>

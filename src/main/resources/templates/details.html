@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="main_layout.html">
+
+<div layout:fragment="siteContent">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <form action="/save-game" method="post" th:if="${theGame!=null}">
+                <input type="hidden" name="id" th:value="${theGame.id}">
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label>NAME:</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="name"
+                               placeholder="Insert Name"
+                               th:value="${theGame.name}" required>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label>YEAR:</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input class="form-control" type="number" name="year"
+                               placeholder="Insert the year"
+                               th:value="${theGame.year}" required>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label>PRICE:</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="price"
+                               placeholder="Insert Price"
+                               th:value="${theGame.price}" required>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label>AUTHOR:</label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <select class="form-select" name="authorModel.id">
+                            <option th:each="author : ${authors}"
+                                    th:value="${author.id}"
+                                    th:selected="${theGame.authorModel.id == author.id}"
+                                    th:text="${author.fullName + ' / ' + author.status}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <button class="btn btn-success btn-sm">SAVE GAME</button>
+                        <button type="button" class="btn btn-sm btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#delete-btn">
+                            DELETE GAME
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- Modal -->
+            <div class="modal fade" id="delete-btn" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true" th:if="${theGame!=null}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form th:action="@{'/delete-game'}" method="post">
+                            <input type="hidden" name="id" th:value="${theGame.id}">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm delete</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ARE YOU SURE?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button class="btn btn-danger">Save changes</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <h4 th:if="${theGame==null}" class="text-center">404 NOT FOUND</h4>
+        </div>
+    </div>
+</div>
+</html>
