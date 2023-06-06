@@ -102,17 +102,5 @@ public class HomeController {
 
     }
 
-//    @PostMapping(value = "/add-music-v2")
-//    public String addMusicV2(
-//            @RequestParam(name = "music-name") String name,//request.getParameter("name")
-//            @RequestParam(name = "music-author") String author,
-//            @RequestParam(name = "music-duration") int duration
-//            ){
-//        Music music = new Music();
-//        music.setName(name);
-//        music.setName(author);
-//        music.setDuration(duration);
-//        DBManager.addMusic(music);
-//        return "redirect:/";//response.sendRedirect("/");
-//    }
+
 }
